@@ -91,6 +91,11 @@ class SasDateTimeFormats
             'YEAR.' => 'Y',
             'YYMMC.' => 'Y:m',
             'YYMMD.' => 'Y-m',
+            'YYMMP.' => 'Y.m',
+            'YYMMS.' => 'Y/m',
+            'YYMMN.' => 'Ym',
+            'YYMMDD.' => 'y-m-d',
+            'YYMON.' => 'YM',
         ];
 
         return $sasYearFormats[$sasYearFormat] ?? '';

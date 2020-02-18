@@ -108,4 +108,88 @@ class CarbonSasHelperTest extends TestCase
             ['WORDDATX.', '17 March 2013'],
         ];
     }
+
+    /**
+     * createTimeFromFormat test
+     *
+     * @dataProvider providerForCreateTimeFromFormat
+     *
+     * @param string $sasTime
+     * @param string $expected
+     *
+     * @return void
+     */
+    public function testCreateTimeFromFormat(string $sasTime, string $expected)
+    {
+        $carbonSasHelper = CarbonSasHelper::createTimeFromFormat($sasTime, $expected);
+        $carbonTimeFormat = SasDateTimeFormats::toCarbonTimeFormat($sasTime);
+        $resultTime = $carbonSasHelper->format($carbonTimeFormat);
+
+        $this->assertSame($expected, $resultTime);
+    }
+
+    /**
+     * provider for createTimeFromFormat
+     *
+     * @return array
+     */
+    public function providerForCreateTimeFromFormat()
+    {
+        return [
+            ['TOD.', '05:23:54'],
+        ];
+    }
+
+    /**
+     * createYearFromFormat test
+     *
+     * @dataProvider providerForCreateYearFromFormat
+     *
+     * @param string $sasTime
+     * @param string $expected
+     *
+     * @return void
+     */
+    public function testCreateYearFromFormat(string $sasYear, string $expected)
+    {
+        $carbonSasHelper = CarbonSasHelper::createYearFromFormat($sasYear, $expected);
+        $carbonYearFormat = SasDateTimeFormats::toCarbonYearFormat($sasYear);
+        $resultYear = $carbonSasHelper->format($carbonYearFormat);
+
+        $this->assertSame($expected, $resultYear);
+    }
+
+    /**
+     * provider for createTimeFromFormat
+     *
+     * @return array
+     */
+    public function providerForCreateYearFromFormat()
+    {
+        return [
+            ['YEAR.', '2013'],
+            ['YYMMC.', '2013:03'],
+            ['YYMMD.', '2013-03'],
+            ['YYMMP.', '2013.03'],
+            ['YYMMS.', '2013/03'],
+            ['YYMMN.', '201303'],
+            ['YYMMDD.', '13-03-17'],
+        ];
+    }
+
+    /**
+     *
+     */
+    public function testCreateYearFromFormatOnSasYearIsDifferentFromCarbonYear()
+    {
+        $sasYearFormat = 'YYMON.';
+        $sasYear = '2013MAR';
+        $expectedCarbonYear = '2013Mar';
+
+        $carbonSasHelper = CarbonSasHelper::createYearFromFormat($sasYearFormat, $sasYear);
+        $carbonYearFormat = SasDateTimeFormats::toCarbonYearFormat($sasYearFormat);
+        $resultYear = $carbonSasHelper->format($carbonYearFormat);
+
+        $this->assertSame($expectedCarbonYear, $resultYear);
+    }
 }

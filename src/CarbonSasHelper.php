@@ -54,7 +54,7 @@ class CarbonSasHelper
      */
     public static function createTimeFromFormat(string $sasTimeFormat, string $time)
     {
-        $carbonTimeFormat = SasDateTimeFormats::toCarbonDateFormat($sasTimeFormat);
+        $carbonTimeFormat = SasDateTimeFormats::toCarbonTimeFormat($sasTimeFormat);
 
         if ($carbonTimeFormat === '') {
             $exceptionMessage = 'The SAS time format: %s is invalid or unsupported at this time.';
