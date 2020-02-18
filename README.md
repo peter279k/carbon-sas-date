@@ -9,6 +9,14 @@
 - This is a helper to let given SAS date/year/time format convert to Carbon date format.
 - It can also use SAS date format directly to create a Carbon instance.
 
+## Installation
+
+Using the `composer` to install this package
+
+```BASH
+composer require lee/carbon-sas-date:^1.0
+```
+
 ## Notice
 
 Some SAS date formats cannot find current mapped Carbon date formats.
