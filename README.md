@@ -59,3 +59,7 @@ $carbonSasHelper = CarbonSasHelper::createDateFromFormat($sasDateFormat, $sasDat
 
 $carbonSasHelper->format('YM'); // '2013Mar'
 ```
+
+## References
+
+[SAS date documentation](https://documentation.sas.com/?docsetId=lrcon&docsetTarget=p1wj0wt2ebe2a0n1lv4lem9hdc0v.htm&docsetVersion=9.4&locale=en#n1franwnd7n7yrn1kasbprbtzroo)
