@@ -178,7 +178,9 @@ class CarbonSasHelperTest extends TestCase
     }
 
     /**
+     * createYearFromFormat test about SAS year is different from Carbon year result
      *
+     * @return void
      */
     public function testCreateYearFromFormatOnSasYearIsDifferentFromCarbonYear()
     {
@@ -191,5 +193,111 @@ class CarbonSasHelperTest extends TestCase
         $resultYear = $carbonSasHelper->format($carbonYearFormat);
 
         $this->assertSame($expectedCarbonYear, $resultYear);
+    }
+
+    /**
+     * test should return string about unsupported SAS date formats
+     *
+     * @dataProvider unsupportedSasDateFormatProvider
+     *
+     * @param string $sasDateFormat
+     *
+     * @return void
+     */
+    public function testShouldThrowInvalidArgumentExceptionOnUnsupportedSasDateFormats(string $sasDateFormat)
+    {
+        $expected = '';
+        $result = SasDateTimeFormats::toCarbonDateFormat($sasDateFormat);
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * Unsupported SAS date formats provider
+     *
+     * @return array
+     */
+    public function unsupportedSasDateFormatProvider()
+    {
+        return [
+            ['JULDAY. 1'],
+            ['JULIAN. 1'],
+            ['MMYY.'],
+            ['MONTH.'],
+            ['PDJULG. 1'],
+            ['PDJULI. 1,'],
+        ];
+    }
+
+    /**
+     * test should throw exception about unsupported SAS time formats
+     *
+     * @dataProvider unsupportedSasTimeFormatProvider
+     *
+     * @param string $sasTimeFormat
+     *
+     * @return void
+     */
+    public function testShouldThrowInvalidArgumentExceptionOnUnsupportedSasTimeFormats(string $sasTimeFormat)
+    {
+        $expected = '';
+        $result = SasDateTimeFormats::toCarbonTimeFormat($sasTimeFormat);
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * Unsupported SAS time formats provider
+     *
+     * @return array
+     */
+    public function unsupportedSasTimeFormatProvider()
+    {
+        return [
+            ['QTR.'],
+            ['QTRR.'],
+            ['TIME.'],
+            ['TIMEAMPM.'],
+        ];
+    }
+    /**
+     * test should throw exception about unsupported SAS year formats
+     *
+     * @dataProvider unsupportedSasYearFormatProvider
+     *
+     * @param string $sasYearFormat
+     *
+     * @return void
+     */
+    public function testShouldThrowInvalidArgumentExceptionOnUnsupportedSasYearFormats(string $sasYearFormat)
+    {
+        $expected = '';
+        $result = SasDateTimeFormats::toCarbonYearFormat($sasYearFormat);
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * Unsupported SAS year formats provider
+     *
+     * @return array
+     */
+    public function unsupportedSasYearFormatProvider()
+    {
+        return [
+            ['YYMM.'],
+            ['YYQ.'],
+            ['YYQC.'],
+            ['YYQD.'],
+            ['YYQP.'],
+            ['YYQS.'],
+            ['YYQN.'],
+            ['YYQR.'],
+            ['YYQRC.'],
+            ['YYQRD.'],
+            ['YYQRP.'],
+            ['YYQRS.'],
+            ['YYQRN.'],
+        ];
     }
 }
