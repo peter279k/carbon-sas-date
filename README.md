@@ -1,6 +1,7 @@
 # carbon-sas-date
 
 [![Build Status](https://travis-ci.org/peter279k/carbon-sas-date.svg?branch=master)](https://travis-ci.org/peter279k/carbon-sas-date)
+[![Coverage Status](https://coveralls.io/repos/github/peter279k/carbon-sas-date/badge.svg?branch=issue_%231)](https://coveralls.io/github/peter279k/carbon-sas-date?branch=issue_%231)
 [![StyleCI](https://github.styleci.io/repos/237868480/shield?branch=master)](https://github.styleci.io/repos/237868480)
 
 ## Introduction
